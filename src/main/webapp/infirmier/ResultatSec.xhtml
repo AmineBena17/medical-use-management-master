@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+
+    
+    <ui:composition template="/templateadmin.xhtml">
+        
+        <ui:define name="title"> <h:outputText value="Medical Use Management : Rechercher une secrétaire"></h:outputText></ui:define>
+        <ui:define name="body">
+                <h:form>
+                 <h3><h:outputText value="Rechercher : "/></h3>
+                 <h:inputText required="true" value="#{searchBean.infirmier.nom}"/>
+                 <h:commandButton value="Rechercher" action="#{searchBean.chercherSecretaire()}"/>
+            </h:form>
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Résultat de rechercher : "/></h1>
+                    <p:dataTable value="#{searchBean.list_sec}" var="item">
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Prénom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prenom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Code Secrétaire"/>
+                            </f:facet>
+                            <h:outputText value="#{item.code}"/>
+                        </p:column>
+                         <f:facet name="footer">
+                                                    <p:button value="Retour" outcome="List"/>
+                                                </f:facet>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+</ui:define>
+       
+        
+    </ui:composition>
+    
+</html>
+

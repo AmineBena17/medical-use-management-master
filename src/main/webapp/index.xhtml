@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Bienvenue à Medical Use Management</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/loginform.css"/>
+    </h:head>
+    <h:body>
+
+
+
+        <div class="login-page">
+
+            <div class="form">
+
+                <h:form  class="login-form">
+                    <img src="http://i.imgur.com/y52H43B.png" class="image-login"></img> <br/>
+                    <p:commandButton class="bouton" value="Administrateur" type="button" onclick="PF('dlg1').show();" />   <p:commandButton class="bouton" value="Médecin" type="button" onclick="PF('dlg2').show();" /><p:commandButton class="bouton" value="Secrétaire" type="button" onclick="PF('dlg3').show();" />
+
+                </h:form>
+            </div>
+        </div>
+
+        <p:dialog header="Authentification Administration" widgetVar="dlg1" minHeight="40">
+            <h:form>
+                <h:outputText value="Email" />
+                <h:inputText value="#{loginBeanAdmin.admin.email}" required="true" />
+                <h:outputText value="Mot de passe "/>
+                <h:inputSecret value="#{loginBeanAdmin.admin.password}" required="true" />
+                <h:commandButton value="Se Connecter" action="#{loginBeanAdmin.authAdmin()}"/>
+            </h:form></p:dialog>
+
+        <p:dialog header="Authentification Médecin" widgetVar="dlg2" modal="true" height="40">
+            <h:form>
+                <h:outputText value="Email" />
+                <h:inputText value="#{loginBean.medecin.email}" required="true" />
+                <h:outputText value="Mot de passe "/>
+                <h:inputSecret value="#{loginBean.medecin.password}"/>
+                <h:commandButton value="Se Connecter" action="#{loginBean.authMedecin()}" />
+            </h:form>
+        </p:dialog>   
+
+
+        <p:dialog header="Authentification Secrétariat" widgetVar="dlg3" modal="true" height="60" width="auto">
+            <h:form>
+                <h:outputText value="Email " />
+                <h:inputText value="#{loginBeanInfirmier.infirmier.email}" required="true" />
+                <h:outputText value="Mot de passe "/>
+                <h:inputSecret value="#{loginBeanInfirmier.infirmier.password}" required="true" />
+                <h:commandButton value="Se Connecter" action="#{loginBeanInfirmier.authInfirmier()}"/>
+            </h:form>
+        </p:dialog>   
+
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+</html>
+

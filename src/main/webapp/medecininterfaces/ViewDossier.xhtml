@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DossiermedicalViewDlg" widgetVar="DossiermedicalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Dossier Médical : #{dossiermedicalController.selected.nompatient}">
+            <h:form id="DossiermedicalViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dossiermedicalController.selected != null}">
+                         <h:outputText value="Nom Patient"/>
+                        <h:outputText value="#{dossiermedicalController.selected.nompatient}" title="#{bundle.ViewDossiermedicalTitle_nompatient}"/>
+                        <h:outputText value="Date de naissance"/>
+                        <h:outputText value="#{dossiermedicalController.selected.datenaissance}" title="#{bundle.ViewDossiermedicalTitle_datenaissance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Email"/>
+                        <h:outputText value="#{dossiermedicalController.selected.email}" title="#{bundle.ViewDossiermedicalTitle_email}"/>
+                        <h:outputText value="Téléphone"/>
+                        <h:outputText value="#{dossiermedicalController.selected.tel}" title="#{bundle.ViewDossiermedicalTitle_tel}"/>
+                        <h:outputText value="Adresse"/>
+                        <h:outputText value="#{dossiermedicalController.selected.adresse}" title="#{bundle.ViewDossiermedicalTitle_adresse}"/>
+                        <h:outputText value="Groupe Sanguin"/>
+                        <h:outputText value="#{dossiermedicalController.selected.groupesanguin}" title="#{bundle.ViewDossiermedicalTitle_groupesanguin}"/>
+                        <h:outputText value="Régime Assurance"/>
+                        <h:outputText value="#{dossiermedicalController.selected.regimeassurance}" title="#{bundle.ViewDossiermedicalTitle_regimeassurance}"/>
+                        <h:outputText value="Date du dossier"/>
+                        <h:outputText value="#{dossiermedicalController.selected.datedossier}" title="#{bundle.ViewDossiermedicalTitle_datedossier}"/>
+                        <h:outputText value="Description"/>
+                        <h:outputText value="#{dossiermedicalController.selected.description}" title="#{bundle.ViewDossiermedicalTitle_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Fermer" onclick="DossiermedicalViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

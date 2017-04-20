@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  
+    
+    
+    <ui:composition template="templatemedecin.xhtml">
+        
+         <ui:define name="title">
+             <h:outputText value="Medical Use Management : #{loginBean.medecin.email}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Liste des Dossiers Médicaux"/></h1>
+                    <h4><p:dataTable value="#{dossiermedicalController.items}" var="item">
+      
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom Patient"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nompatient}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date de naissance"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datenaissance}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Téléphone"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresse}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Groupe Sanguin"/>
+                            </f:facet>
+                            <h:outputText value="#{item.groupesanguin}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Regime Assurance"/>
+                            </f:facet>
+                            <h:outputText value="#{item.regimeassurance}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date du dossier"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datedossier}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        </p:dataTable></h4>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+        
+    </ui:composition>
+</html>
+

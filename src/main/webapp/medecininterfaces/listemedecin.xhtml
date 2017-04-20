@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/templatemedecin.xhtml">
+        
+         <ui:define name="title">
+             <h:outputText value="Medical Use Management : Liste des médecins"></h:outputText>
+        </ui:define>
+        
+        
+        
+        <ui:define name="body">
+           <h:form class="liste" id="MedecinListForm">
+                <p:panel header="Liste des Médecins">
+                    <h4>
+                    <p:dataTable id="datalist" value="#{medecinController.items}" var="item"
+                                 selectionMode="single" selection="#{medecinController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idmedecin}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton"/>
+
+     
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Prénom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prenom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Numéro Téléphone"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresse}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date de naissance"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datenaissance}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Local"/>
+                            </f:facet>
+                            <h:outputText value="#{item.local}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Code du médecin"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codemedecin}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Spécialité}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.specialite}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Service"/>
+                            </f:facet>
+                            <h:outputText value="#{item.service}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                           <p:commandButton id="viewButton"   icon="ui-icon-document-b" value="Afficher" update=":MedecinViewForm" oncomplete="PF('MedecinViewDialog').show()" disabled="#{empty medecinController.selected}"/>
+                        <p:button id="searchButton" icon="ui-icon-search"  value="Rechercher" outcome="/medecin/ResultatMedecinMedecin"/>
+                                
+                        </f:facet>
+                    </p:dataTable></h4>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="ViewMedecin.xhtml"/>
+         
+        </ui:define>
+
+
+    </ui:composition>    
+    
+  
+</html>
+

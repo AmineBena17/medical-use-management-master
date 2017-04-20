@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InfirmierCreateDlg" widgetVar="InfirmierCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInfirmierTitle}">
+            <h:form id="InfirmierCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{infirmierController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_idinfirimier}" for="idinfirimier" />
+                        <p:inputText id="idinfirimier" value="#{infirmierController.selected.idinfirimier}" title="#{bundle.CreateInfirmierTitle_idinfirimier}" required="true" requiredMessage="#{bundle.CreateInfirmierRequiredMessage_idinfirimier}"/>
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{infirmierController.selected.nom}" title="#{bundle.CreateInfirmierTitle_nom}" required="true" requiredMessage="#{bundle.CreateInfirmierRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{infirmierController.selected.prenom}" title="#{bundle.CreateInfirmierTitle_prenom}" required="true" requiredMessage="#{bundle.CreateInfirmierRequiredMessage_prenom}"/>
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{infirmierController.selected.email}" title="#{bundle.CreateInfirmierTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{infirmierController.selected.password}" title="#{bundle.CreateInfirmierTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateInfirmierLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{infirmierController.selected.code}" title="#{bundle.CreateInfirmierTitle_code}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{infirmierController.create}" value="#{bundle.Save}" update="display,:InfirmierListForm:datalist,:growl" oncomplete="handleSubmit(args,'InfirmierCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InfirmierCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

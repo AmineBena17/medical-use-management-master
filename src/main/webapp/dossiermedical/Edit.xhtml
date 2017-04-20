@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DossiermedicalEditDlg" widgetVar="DossiermedicalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDossiermedicalTitle}">
+            <h:form id="DossiermedicalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dossiermedicalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_iddossiermedical}" for="iddossiermedical" />
+                        <p:inputText id="iddossiermedical" value="#{dossiermedicalController.selected.iddossiermedical}" title="#{bundle.EditDossiermedicalTitle_iddossiermedical}" required="true" requiredMessage="#{bundle.EditDossiermedicalRequiredMessage_iddossiermedical}"/>
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_nompatient}" for="nompatient" />
+                        <p:inputText id="nompatient" value="#{dossiermedicalController.selected.nompatient}" title="#{bundle.EditDossiermedicalTitle_nompatient}" required="true" requiredMessage="#{bundle.EditDossiermedicalRequiredMessage_nompatient}"/>
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_datenaissance}" for="datenaissance" />
+                        <p:calendar id="datenaissance" pattern="MM/dd/yyyy" value="#{dossiermedicalController.selected.datenaissance}" title="#{bundle.EditDossiermedicalTitle_datenaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{dossiermedicalController.selected.email}" title="#{bundle.EditDossiermedicalTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{dossiermedicalController.selected.tel}" title="#{bundle.EditDossiermedicalTitle_tel}" required="true" requiredMessage="#{bundle.EditDossiermedicalRequiredMessage_tel}"/>
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{dossiermedicalController.selected.adresse}" title="#{bundle.EditDossiermedicalTitle_adresse}" />
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_groupesanguin}" for="groupesanguin" />
+                        <p:inputText id="groupesanguin" value="#{dossiermedicalController.selected.groupesanguin}" title="#{bundle.EditDossiermedicalTitle_groupesanguin}" />
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_regimeassurance}" for="regimeassurance" />
+                        <p:inputText id="regimeassurance" value="#{dossiermedicalController.selected.regimeassurance}" title="#{bundle.EditDossiermedicalTitle_regimeassurance}" />
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_datedossier}" for="datedossier" />
+                        <p:inputText id="datedossier" value="#{dossiermedicalController.selected.datedossier}" title="#{bundle.EditDossiermedicalTitle_datedossier}" required="true" requiredMessage="#{bundle.EditDossiermedicalRequiredMessage_datedossier}"/>
+                        <p:outputLabel value="#{bundle.EditDossiermedicalLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{dossiermedicalController.selected.description}" title="#{bundle.EditDossiermedicalTitle_description}" required="true" requiredMessage="#{bundle.EditDossiermedicalRequiredMessage_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dossiermedicalController.update}" value="#{bundle.Save}" update="display,:DossiermedicalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DossiermedicalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DossiermedicalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
